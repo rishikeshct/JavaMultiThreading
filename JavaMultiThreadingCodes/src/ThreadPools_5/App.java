@@ -43,6 +43,30 @@ public class App {
         /**
          * Created 2 threads, and assign tasks (Processor(i).run) to the threads
          */
+		 
+		 /*
+		 
+			
+
+down vote
+Thread Pools are useful only in a Server-client kind of situation where the number/occurrence of client requests cannot be determined/predicted.
+
+In this scenario, creating a new Thread each time a client request is made has two dis-advantages:
+
+1) Run time latency for thread creation: Creation of a thread requires some time, thus the actual job does not start as soon as the request comes in. The client may notice a slight delay.
+
+This criteria is crucial in interactive systems, where the client expects an immediate action.
+
+2) Uncontrolled use of System Resources: Threads consume system resources (memory etc.), thus the system may run out of resources in case there is an unprecedented flow of client requests.
+
+Thread pools address the above concerns by:
+1) Creating specified number of threads on server start-up instead of creating them during the run-time.
+2) Limiting the number of threads that are running at any given time.
+
+Note: The above is applicable for Thread Pools of Fixed Sizes.
+		 
+		 
+		 */
         ExecutorService executor = Executors.newFixedThreadPool(2);//2 Threads
         for (int i = 0; i < 2; i++) { // call the (Processor(i).run) 2 times with 2 threads
             executor.submit(new Processor(i));
